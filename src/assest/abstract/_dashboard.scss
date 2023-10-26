@@ -7,6 +7,10 @@
   top: 10px;
   right: 10px;
 }
+body {
+  height: 100%;
+  width: 100%;
+}
 
 .navigation {
   width: 100%;
@@ -129,13 +133,12 @@
     }
   }
   footer {
+    margin-top: 300px;
     p {
       display: flex;
       align-items: center;
       font-size: 14px;
       gap: 5px;
-      position: fixed;
-      bottom: 0;
     }
   }
 }

@@ -7,7 +7,7 @@ const btn = document.querySelector('button');
 
 //login validation
 form.setAttribute('novalidate', '');
-form.addEventListener('submit', e => {
+form.addEventListener('submit', (e) => {
   e.preventDefault();
   if (validateLogin()) {
     loader();
@@ -19,29 +19,28 @@ const validateLogin = () => {
   let passErr = true;
   const usernameRegx = new RegExp('[a-z0-9]+@[a-z]+.[a-z]{2,3}');
   if (username.value.trim() === '') {
-    errorMessage(username, 'Input field is required');
+    errorMessage(username, 'Username is required');
     userErr = false;
   } else if (
     !usernameRegx.test(username.value.trim()) ||
     username.value.trim() !== 'elimcephas@gmail.com'
   ) {
-    errorMessage(username, 'Input field is not valid');
+    errorMessage(username, 'Username is not valid');
     userErr = false;
   } else {
     successMessage(username);
     userErr = true;
   }
   if (password.value.trim() === '') {
-    errorMessage(password, 'Input field is required');
+    errorMessage(password, 'Pasword is required');
     passErr = false;
   } else if (password.value.trim() !== 'Tankvick123') {
-    errorMessage(password, 'Input field is not valid');
+    errorMessage(password, 'Pasword is not valid');
     passErr = false;
   } else {
     successMessage(password);
     passErr = true;
   }
-
   if ((userErr = passErr === true)) {
     return true;
   } else {
@@ -58,7 +57,7 @@ const errorMessage = (input, message) => {
   small.classList.add('error-message');
   small.textContent = `${message}`;
 };
-const successMessage = input => {
+const successMessage = (input) => {
   const inputParent = input.parentElement;
   const small = inputParent.querySelector('small');
   small.classList.remove('error-message');

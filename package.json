@@ -15,11 +15,11 @@
     "bootstrap-icons": "^1.11.1",
     "datatables.net-bs5": "^1.13.6",
     "firebase": "^10.5.0",
-    "parcel": "^2.10.1",
     "toastr": "^2.1.4"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.10.1",
+    "parcel": "^2.10.1",
     "process": "^0.11.10"
   }
 }

@@ -8,7 +8,3 @@ const successMessage = () => {
   }
 };
 successMessage();
-
-window.addEventListener('load', () => {
-  alert('working');
-});

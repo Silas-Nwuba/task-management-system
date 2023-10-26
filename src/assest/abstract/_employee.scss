@@ -110,7 +110,7 @@
       }
     }
     table {
-      margin-top: 40px;
+      margin-top: 30px;
       width: 100%;
       background-color: white;
       box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
@@ -123,6 +123,9 @@
         color: #333;
         font-size: 0.95rem;
         padding: 20px 10px;
+      }
+      .bi-info-square-fill {
+        color: white;
       }
     }
     .add-employee .modal {
@@ -148,11 +151,20 @@
             background-color: #136a8a;
             color: white;
             border-radius: 5px;
-            width: 100px;
+            width: 120px;
             margin: 10px 0px;
-            padding: 10px 15px;
+            padding: 10px 20px;
             outline: none;
             border: none;
+          }
+          .error-message {
+            color: red;
+            font-size: 13px;
+            padding: 10px 0px;
+          }
+
+          .success-message {
+            display: none;
           }
         }
       }
@@ -175,7 +187,7 @@
       align-items: center;
       font-size: 14px;
       gap: 5px;
-      position: relative;
+      position: absolute;
       bottom: 0;
     }
   }
