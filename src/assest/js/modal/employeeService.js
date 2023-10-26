@@ -17,33 +17,29 @@ export function writeEmployee(data) {
     .then(() => {
       const key = 'successMessage';
       localStorage.setItem(key, 'Successfully Registered');
+      const editModel = document.querySelector('.add-employee');
+      editModel.querySelector('.modal').style.display = 'none';
+      document.querySelector('.overlay').style.display = 'none';
+      document.querySelector('form').reset();
+
+      const message = localStorage.getItem('successMessage');
+      if (message) {
+        toastr.success(message);
+        localStorage.removeItem('successMessage');
+      }
     })
     .catch(() => {
       const key = 'errorMessage';
       localStorage.setItem(key, 'Network Error');
+      const editModol = document.querySelector('.add-employee');
+      editModol.querySelector('.modal').style.display = 'none';
+      document.querySelector('.overlay').style.display = 'none';
+      document.querySelector('form').reset();
+
+      const message = localStorage.getItem('errorMessage');
+      if (message) {
+        toastr.error(message);
+        localStorage.removeItem('errorMessage');
+      }
     });
 }
-const success = () => {
-  const message = localStorage.getItem('successMessage');
-  if (message) {
-    toastr.success(message);
-    localStorage.removeItem('successMessage');
-  }
-  const editModol = document.querySelector('.add-employee');
-  editModol.querySelector('.modal').style.display = 'none';
-  document.querySelector('.overlay').style.display = 'none';
-  document.querySelector('form').reset();
-};
-success();
-const error = () => {
-  const message = localStorage.getItem('errorMessage');
-  if (message) {
-    toastr.error(message);
-    localStorage.removeItem('errorMessage');
-  }
-  const editModol = document.querySelector('.add-employee');
-  editModol.querySelector('.modal').style.display = 'none';
-  document.querySelector('.overlay').style.display = 'none';
-  document.querySelector('form').reset();
-};
-error();
