@@ -1,13 +1,17 @@
+import { authenticateUser } from '../modal/login';
+import toastr from 'toastr';
+import { authenticateUser } from '../modal/login';
 const username = document.querySelector('.username');
 const password = document.querySelector('.password');
 const form = document.querySelector('form');
 
 //login validation
-
 form.setAttribute('novalidate', '');
 form.addEventListener('submit', e => {
   e.preventDefault();
-  validateLogin();
+  if (validateLogin()) {
+    authenticateUser(username.value, password.value);
+  }
 });
 const validateLogin = () => {
   let userErr = true;
@@ -16,7 +20,10 @@ const validateLogin = () => {
   if (username.value.trim() === '') {
     errorMessage(username, 'Input field is required');
     userErr = false;
-  } else if (!usernameRegx.test(username.value.trim())) {
+  } else if (
+    !usernameRegx.test(username.value.trim()) ||
+    username.value.trim() !== 'elimcephas@gmail.com'
+  ) {
     errorMessage(username, 'Input field is not valid');
     userErr = false;
   } else {
@@ -26,9 +33,18 @@ const validateLogin = () => {
   if (password.value.trim() === '') {
     errorMessage(password, 'Input field is required');
     passErr = false;
+  } else if (password.value.trim() !== 'Tankvick123') {
+    errorMessage(password, 'Input field is not valid');
+    passErr = false;
   } else {
     successMessage(password);
     passErr = true;
+  }
+
+  if ((userErr = passErr === true)) {
+    return true;
+  } else {
+    return false;
   }
 };
 

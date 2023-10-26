@@ -1,0 +1,122 @@
+@import '/src/assest/abstract/_base.scss';
+@import '/node_modules/bootstrap/scss/bootstrap.scss';
+.navigation {
+  width: 100%;
+  background-color: #136a8a;
+  position: fixed;
+  .navigation-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 15px;
+    margin: 0px 50px;
+    h4 {
+      color: white;
+      font-weight: 600;
+      font-size: 1rem;
+      margin-left: 230px;
+    }
+    .navigation-action {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      li {
+        list-style: none;
+        color: white;
+        cursor: pointer;
+      }
+      li a {
+        text-decoration: none;
+        color: white;
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+.interface {
+  display: flex;
+  .menu {
+    background-color: #222222;
+    width: 260px;
+    height: 100vh;
+    position: fixed;
+
+    .menu-content {
+      margin: 40px 0px 0px 5px;
+      ul li {
+        list-style: none;
+        padding: 10px 0px;
+      }
+      li a {
+        color: #eeee;
+        text-decoration: none;
+        font-size: 0.9rem;
+        padding: 10px 10px;
+        display: inline-block;
+        width: 80%;
+        border-radius: 5px;
+      }
+      .active {
+        text-decoration: none;
+        background-color: #eeee;
+        padding: 10px;
+        width: 100%;
+        box-sizing: border-box;
+        display: inline-block;
+        border-radius: 5px;
+        color: white;
+        width: 80%;
+      }
+      ul li a:hover {
+        background-color: #eeee;
+        transition: 0.5s ease;
+        color: white;
+      }
+    }
+  }
+  .employee {
+    margin-top: 100px;
+    margin-left: 300px;
+    .breadcrumb {
+      width: 1000px;
+      border-radius: 5px;
+      background-color: #eee;
+      padding: 10px 15px;
+      li {
+        list-style: none;
+        font-size: 0.94rem;
+        font-weight: 500;
+        color: #333;
+      }
+    }
+    .employee-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      h4 {
+        font-weight: 600;
+      }
+      .btn-primary {
+        background-color: #136a8a;
+        border-color: #136a8a;
+      }
+    }
+    table {
+      margin-top: 40px;
+      width: 100%;
+      background-color: white;
+      box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
+        rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+      .emp-active {
+        color: green;
+        font-weight: 500;
+      }
+      tbody td {
+        color: #333;
+        font-size: 0.95rem;
+        padding: 20px 10px;
+      }
+    }
+  }
+}
