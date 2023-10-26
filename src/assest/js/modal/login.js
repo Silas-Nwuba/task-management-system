@@ -10,7 +10,8 @@ export const authenticateUser = (username, password) => {
       if (user) {
         window.location.href = 'http://localhost:1234/dashboard.html';
         form.reset();
-        toastr.success('Successfully logged in');
+        const key = 'successMessage';
+        localStorage.setItem(key, 'Successfully logged in');
       }
     })
     .catch(() => {

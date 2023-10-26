@@ -1,15 +1,16 @@
 import { authenticateUser } from '../modal/login';
-import toastr from 'toastr';
-import { authenticateUser } from '../modal/login';
+
 const username = document.querySelector('.username');
 const password = document.querySelector('.password');
 const form = document.querySelector('form');
+const btn = document.querySelector('button');
 
 //login validation
 form.setAttribute('novalidate', '');
 form.addEventListener('submit', e => {
   e.preventDefault();
   if (validateLogin()) {
+    loader();
     authenticateUser(username.value, password.value);
   }
 });
@@ -48,6 +49,9 @@ const validateLogin = () => {
   }
 };
 
+const loader = () => {
+  btn.innerHTML = 'Processing...';
+};
 const errorMessage = (input, message) => {
   const inputParent = input.parentElement;
   const small = inputParent.querySelector('small');
