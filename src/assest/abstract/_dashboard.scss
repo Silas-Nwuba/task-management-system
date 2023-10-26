@@ -15,7 +15,6 @@
       color: white;
       font-weight: 600;
       font-size: 1rem;
-      margin-left: 230px;
     }
     .navigation-action {
       display: flex;
@@ -42,6 +41,7 @@
     width: 260px;
     height: 100vh;
     position: fixed;
+    top: 66px;
     .menu-content {
       margin: 40px 0px 0px 5px;
       ul li {
@@ -119,6 +119,16 @@
       .item-4 {
         background-color: green;
       }
+    }
+  }
+  footer {
+    p {
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      gap: 5px;
+      position: absolute;
+      bottom: 0;
     }
   }
 }

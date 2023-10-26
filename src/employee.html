@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/src/assest/css/employee.css" />
+    <script type="module" src="/src/assest/js/view/employee.js"></script>
     <title>task-manangement/employee</title>
   </head>
   <body>
@@ -12,7 +13,7 @@
         <h4>Task management</h4>
         <div class="navigation-action">
           <li>elimcephas@gmail.com</li>
-          <li><a href="#">Logout</a></li>
+          <li><a href="/src/app.html">Logout</a></li>
         </div>
       </div>
     </section>
@@ -129,8 +130,10 @@
         <nav class="breadcrumb">
           <li>Employee</li>
         </nav>
-
-        <table class="table table-striped">
+        <span class="add-btn">
+          <button type="button">Add</button>
+        </span>
+        <table class="table table-striped" id="mytable">
           <thead>
             <tr>
               <th>S/N</th>
@@ -139,7 +142,7 @@
               <th>Gender</th>
               <th>Position</th>
               <th>Status</th>
-              <th class="emp-active">Action</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -358,12 +361,95 @@
                       <path
                         d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"
                       />
-                    </svg></button
-                ></span>
+                    </svg>
+                  </button>
+                </span>
               </td>
             </tr>
           </tbody>
         </table>
+        <!--add employee modal-->
+        <div class="add-employee">
+          <div class="modal">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="staticBackdropLabel">
+                    Add Employee
+                  </h5>
+
+                  <span class="close">&times;</span>
+                </div>
+                <div class="modal-body">
+                  <form action="" autocomplete="off">
+                    <div class="col">
+                      <input
+                        type="text"
+                        placeholder="First name"
+                        required
+                        class="first-name"
+                      />
+                    </div>
+                    <div class="col">
+                      <input
+                        type="text"
+                        placeholder="Last name"
+                        required
+                        class="last-name"
+                      />
+                    </div>
+                    <div class="col">
+                      <input
+                        type="email"
+                        placeholder="Email"
+                        required
+                        class="email"
+                      />
+                    </div>
+                    <div class="col">
+                      <select class="gender" required class="gender">
+                        <option value="" selected>Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                      </select>
+                    </div>
+                    <div class="col">
+                      <select class="Position" required class="position">
+                        <option value="" selected>Position</option>
+                        <option value="Fronend developer">
+                          Fronend developer
+                        </option>
+                        <option value="Backend developer">
+                          Backend developer
+                        </option>
+                      </select>
+                    </div>
+                    <button type="submit">Submit</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="overlay"></div>
+
+        <footer>
+          <p>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-c-circle"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM8.146 4.992c-1.212 0-1.927.92-1.927 2.502v1.06c0 1.571.703 2.462 1.927 2.462.979 0 1.641-.586 1.729-1.418h1.295v.093c-.1 1.448-1.354 2.467-3.03 2.467-2.091 0-3.269-1.336-3.269-3.603V7.482c0-2.261 1.201-3.638 3.27-3.638 1.681 0 2.935 1.054 3.029 2.572v.088H9.875c-.088-.879-.768-1.512-1.729-1.512Z"
+              />
+            </svg>
+            elimcephas-2023
+          </p>
+        </footer>
       </div>
     </section>
   </body>
