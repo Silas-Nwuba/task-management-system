@@ -1,5 +1,9 @@
 import toastr from 'toastr';
-import { writeEmployee } from '../modal/employeeService';
+import {
+  writeEmployee,
+  updateEmployeeDb,
+  deleteEmployeeDb,
+} from '../modal/employeeService';
 import { getDatabase, ref, onValue } from 'firebase/database';
 import { app } from '../modal/config/firebaseConfig';
 
@@ -15,6 +19,7 @@ const form = document.querySelector('form');
 const btn = document.querySelector('.btn-submit');
 const tbody = document.querySelector('tbody');
 const editmodal = document.querySelector('.edit-employee');
+const deleteModal = document.querySelector('.delete-employee');
 
 //open add-employee modal
 document.querySelector('.add-btn').addEventListener('click', () => {
@@ -51,45 +56,14 @@ const renderEmployee = () => {
        <td>${email}</td>
        <td>${gender}</td>
        <td>${position}</td>
-       <td class="emp-active">Active</td>
+       <td>
+       <span class="badge badge-success">Active</span></td>
        <td>
          <span>
-           <button type="button" class="btn btn-success">
-             <svg
-               xmlns="http://www.w3.org/2000/svg"
-               width="20"
-               height="20"
-               fill="currentColor"
-               class="bi bi-pencil-square"
-               viewBox="0 0 16 16"
-             >
-               <path
-                 d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"
-               />
-               <path
-                 fill-rule="evenodd"
-                 d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
-               />
-             </svg>
+           <button type="button" class="btn btn-success">Edit
            </button>
-           <button type="button" class="btn btn-info">
-           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-info-square-fill" viewBox="0 0 16 16">
-           <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm8.93 4.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM8 5.5a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
-         </svg>
-           </button>
-           <button type="button" class="btn btn-danger">
-             <svg
-               xmlns="http://www.w3.org/2000/svg"
-               width="20"
-               height="20"
-               fill="currentColor"
-               class="bi bi-trash-fill"
-               viewBox="0 0 16 16"
-             >
-               <path
-                 d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"
-               />
-             </svg>
+          
+           <button type="button" class="btn btn-danger">Delete
            </button>
          </span>
        </td>
@@ -112,7 +86,6 @@ form.addEventListener('submit', (e) => {
 
 const validation = () => {
   let error = true;
-  const regrex = /^[a-zA-Z]+$/;
   if (
     firstName.value.trim() === '' ||
     lastName.value.trim() === '' ||
@@ -150,21 +123,20 @@ const creatEmployee = (formElement) => {
   writeEmployee(data);
 };
 
-// //const editEmployee = () => {
-// document.querySelector('tbody').addEventListener('click', (e) => {
-//   e.preventDefault();
-//   if (e.target.closest('.btn-success')) {
-//     const row =
-//       e.target.closest('.btn-success').parentElement.parentElement
-//         .parentElement;
-//     const id = row.children[0].innerText;
-//     const employeeName = row.children[1].innerText;
-//     const email = row.children[2].innerText;
-//     const gender = row.children[3].innerText;
-//     const position = row.children[4].innerText;
-//     renderItemOnEditModal(id, employeeName, email, gender, position);
-//   }
-// });
+tbody.addEventListener('click', (e) => {
+  e.preventDefault();
+  if (e.target.closest('.btn-success')) {
+    const row =
+      e.target.closest('.btn-success').parentElement.parentElement
+        .parentElement;
+    const id = row.children[0].innerText;
+    const employeeName = row.children[1].innerText;
+    const email = row.children[2].innerText;
+    const gender = row.children[3].innerText;
+    const position = row.children[4].innerText;
+    renderItemOnEditModal(id, employeeName, email, gender, position);
+  }
+});
 const renderItemOnEditModal = (id, employeeName, email, gender, position) => {
   let temp = [];
   const details = {
@@ -182,7 +154,7 @@ const renderItemOnEditModal = (id, employeeName, email, gender, position) => {
   temp.forEach((data) => {
     const firstName = data.employeeName.split(' ')[0];
     const lastName = data.employeeName.split(' ')[1];
-    const html = ` <div class="modal" data-id=${data.id}>
+    const html = ` <div class="modal" data-id = ${data.id}>
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -235,12 +207,14 @@ const renderItemOnEditModal = (id, employeeName, email, gender, position) => {
             <div class="col">
               <select required class="position">
                 <option value="" selected>Position</option>
+                <option value="UI/UX designer">UI/UX designer</option>
                 <option value="Fronend developer">
                   Fronend developer
                 </option>
                 <option value="Backend developer">
                   Backend developer
                 </option>
+
               </select>
               <small></small>
             </div>
@@ -250,16 +224,12 @@ const renderItemOnEditModal = (id, employeeName, email, gender, position) => {
       </div>
     </div>
   </div>`;
-    // console.log(editmodal);
-    // editmodal.insertAdjacentHTML('beforeend', html);
-    // editmodal.querySelector('.modal').style.display = 'block';
-    // overlay.style.display = 'block';
-    // editmodal.querySelector('.close').addEventListener('click', closeEditModal);
-
-    //   editmodal.querySelector('form').setAttribute('novalidate', '');
-    //   editmodal
-    //     .querySelector('.btn-submit')
-    //     .addEventListener('submit', validationForm);
+    editmodal.insertAdjacentHTML('beforeend', html);
+    editmodal.querySelector('.modal').style.display = 'block';
+    overlay.style.display = 'block';
+    editmodal.querySelector('.close').addEventListener('click', closeEditModal);
+    editmodal.querySelector('form').setAttribute('novalidate', '');
+    editmodal.querySelector('form').addEventListener('submit', validationForm);
   });
 };
 
@@ -270,8 +240,110 @@ const closeEditModal = () => {
 };
 const validationForm = (e) => {
   e.preventDefault();
-  alert('Working');
+  const form = e.target;
+  if (checkFormInput(form)) {
+    form.querySelector('.btn-update').innerHTML = 'Processing..';
+    editEmployeeData(form);
+  }
 };
+const checkFormInput = (formElement) => {
+  const firstName = formElement.querySelector('.first-name');
+  const lastName = formElement.querySelector('.last-name');
+  const email = formElement.querySelector('.email');
+  const gender = formElement.querySelector('.gender');
+  const position = formElement.querySelector('.position');
+  let error = true;
+  if (
+    firstName.value.trim() === '' ||
+    lastName.value.trim() === '' ||
+    email.value.trim() === '' ||
+    gender.value.trim() === '' ||
+    position.value.trim() === ''
+  ) {
+    toastr.error('input field is required');
+    error = false;
+  }
+  if (error === true) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+//edit employee
+const editEmployeeData = (form) => {
+  const id = editmodal.querySelector('.modal').dataset.id;
+  const firstName = form.querySelector('.first-name').value;
+  const lastName = form.querySelector('.last-name').value;
+  const email = form.querySelector('.email').value;
+  const gender = form.querySelector('.gender').value;
+  const position = form.querySelector('.position').value;
+
+  const employeeObject = {
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+    gender: gender,
+    position: position,
+  };
+
+  updateEmployeeDb(id, employeeObject);
+};
+
+//delete employee
+const shoeDeleteEmployeeModal = () => {
+  tbody.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (e.target.closest('.btn-danger')) {
+      const row =
+        e.target.closest('.btn-danger').parentElement.parentElement
+          .parentElement;
+      const id = row.children[0].innerText;
+
+      const html = `<div class="modal" data-id=${id}>
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">
+              Confirmation
+            </h5>
+
+            <span class="close">&times;</span>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure to delete this employee?</p>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-success">Yes</button>
+            <button class="btn btn-danger">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>`;
+      deleteModal.insertAdjacentHTML('beforeend', html);
+      deleteModal.querySelector('.modal').style.display = 'block';
+      overlay.style.display = 'block';
+      deleteModal.querySelector('.close').addEventListener('click', () => {
+        deleteModal.querySelector('.modal').style.display = 'none';
+        overlay.style.display = 'none';
+      });
+      deleteModal.querySelector('.btn-danger').addEventListener('click', () => {
+        deleteModal.querySelector('.modal').style.display = 'none';
+        overlay.style.display = 'none';
+      });
+      deleteModal
+        .querySelector('.btn-success')
+        .addEventListener('click', deleteEmployee);
+    }
+  });
+};
+shoeDeleteEmployeeModal();
+const deleteEmployee = (e) => {
+  const id =
+    e.target.parentElement.parentElement.parentElement.parentElement.dataset.id;
+  deleteEmployeeDb(id);
+};
+
 toastr.options = {
   preventDuplicates: true,
   preventOpenDuplicate: true,

@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/src/assest/css/employee.css" />
-    <script type="module" src="/src/assest/js/view/employee.js"></script>
-    <title>Employee | task-manangement</title>
+    <link rel="stylesheet" href="/src/assest/css/project.css" />
+    <script type="module" src="/src/assest/js/view/project.js"></script>
+    <title>Project | Task-manangement</title>
   </head>
   <body>
     <section class="navigation">
@@ -146,88 +146,119 @@
           </ul>
         </div>
       </div>
-      <div class="employee">
+      <div class="project">
         <nav class="breadcrumb">
-          <li>Employee</li>
+          <li>Project</li>
         </nav>
         <span class="add-btn">
-          <button type="button">Add</button>
+          <button type="button">New Project</button>
         </span>
         <table class="table table-striped" id="mytable">
           <thead>
             <tr>
               <th>S/N</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Gender</th>
-              <th>Position</th>
+              <th>Project</th>
+              <th>Estimation</th>
+              <th>Date Started</th>
+              <th>Due Date</th>
+              <th>Piority</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody></tbody>
         </table>
-        <!--add employee modal-->
-        <div class="add-employee">
+
+        <!--add project modal-->
+        <div class="add-project">
           <div class="modal">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
               <div class="modal-content">
                 <div class="modal-header">
                   <h5 class="modal-title" id="staticBackdropLabel">
-                    Add Employee
+                    Add Project
                   </h5>
 
                   <span class="close">&times;</span>
                 </div>
                 <div class="modal-body">
                   <form action="" autocomplete="off">
-                    <div class="col">
-                      <input
-                        type="text"
-                        placeholder="First name"
-                        required
-                        class="first-name"
-                      />
-                      <small></small>
+                    <div class="row">
+                      <div class="col">
+                        <label for="name">Project Name</label>
+                        <input
+                          type="text"
+                          required
+                          class="project-name"
+                          required
+                        />
+                      </div>
+                      <div class="col">
+                        <label for="name">Piority</label>
+                        <select class="piority" required>
+                          <option value="" selected>select</option>
+                          <option value="Low">Low</option>
+                          <option value="High">High</option>
+                        </select>
+                      </div>
+                      <div class="col">
+                        <label for="status">Cost</label>
+                        <input type="text" required class="cost" />
+                      </div>
                     </div>
-                    <div class="col">
-                      <input
-                        type="text"
-                        placeholder="Last name"
-                        required
-                        class="last-name"
-                      />
-                      <small></small>
+
+                    <div class="row">
+                      <div class="col">
+                        <label for="status">Status</label>
+                        <select class="status" required>
+                          <option value="" selected>select</option>
+                          <option value="Pending">Pending</option>
+                          <option value="On-Hold">On-Hold</option>
+                          <option value="Done">Done</option>
+                        </select>
+                      </div>
+                      <div class="col">
+                        <label for="StartDate">Start Date</label>
+                        <input
+                          type="date"
+                          required
+                          class="start-date"
+                          required
+                        />
+                      </div>
+                      <div class="col">
+                        <label for="EndDate">End Date</label>
+                        <input type="date" required class="end-date" required />
+                      </div>
                     </div>
-                    <div class="col">
-                      <input
-                        type="email"
-                        placeholder="Email"
-                        required
-                        class="email"
-                      />
-                      <small></small>
+
+                    <div class="row">
+                      <div class="col">
+                        <label for="Project-Manager">Project Manager</label>
+                        <select class="project-manager" required>
+                          <option value="" selected>select</option>
+                          <option value="Claire Blake">Claire Blake</option>
+                          <option value="George Wilson">George Wilson</option>
+                          <option value="John Smith">John Smith</option>
+                          <option value="Mike Williams">Mike Williams</option>
+                        </select>
+                      </div>
+                      <div class="col">
+                        <label for="Project-Team-member"
+                          >Project Team Member</label
+                        >
+                        <select class="project-team-member" required>
+                          <option value="" selected>select</option>
+                          <option value="silas">silas</option>
+                          <option value="ebuka">ebuka</option>
+                        </select>
+                      </div>
                     </div>
-                    <div class="col">
-                      <select class="gender" required>
-                        <option value="" selected>Gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
-                      </select>
-                      <small></small>
-                    </div>
-                    <div class="col">
-                      <select required class="position">
-                        <option value="" selected>Position</option>
-                        <option value="UI/UX designer">UI/UX designer</option>
-                        <option value="Fronend developer">
-                          Fronend developer
-                        </option>
-                        <option value="Backend developer">
-                          Backend developer
-                        </option>
-                      </select>
-                      <small></small>
+                    <div class="row">
+                      <div class="col">
+                        <label for="desc">Description</label>
+                        <input type="text" required class="desc" />
+                      </div>
                     </div>
                     <button type="submit" class="btn-submit">Submit</button>
                   </form>
@@ -236,12 +267,9 @@
             </div>
           </div>
         </div>
-        <!--edit employee modal-->
-        <div class="edit-employee"></div>
 
-        <!--delete employee modal-->
-        <div class="delete-employee"></div>
-
+        <!--edit project modal-->
+        <div class="edit-project"></div>
         <div class="overlay"></div>
       </div>
     </section>

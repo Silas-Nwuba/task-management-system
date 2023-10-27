@@ -84,7 +84,7 @@ body {
       }
     }
   }
-  .employee {
+  .project {
     margin-top: 100px;
     margin-left: 300px;
     .breadcrumb {
@@ -101,7 +101,7 @@ body {
     }
     .add-btn {
       button {
-        width: 100px;
+        width: 120px;
         background-color: #136a8a;
         color: white;
         font-size: 1rem;
@@ -130,23 +130,41 @@ body {
         vertical-align: baseline;
         border-radius: 0.25rem;
       }
-      .badge-success {
+      .badge-info {
         color: white;
+        background-color: #007bff;
+      }
+      .badge-success {
         background-color: green;
+        color: white;
       }
       tbody td {
         color: #333;
         font-size: 0.95rem;
         padding: 20px 10px;
       }
+      tbody td svg {
+        position: relative;
+        bottom: 2px;
+        right: 2px;
+      }
+      .project-title {
+        font-weight: 600;
+        font-size: 1rem;
+      }
+      .project-desc {
+        font-size: 0.9rem;
+      }
+
       .bi-info-square-fill {
         color: white;
       }
     }
-    .add-employee .modal,
-    .edit-employee .modal {
+    .add-project .modal,
+    .edit-project .modal {
       display: none;
       z-index: 20000;
+      transition: opacity 0.15s linear;
       .close {
         font-size: 30px;
         cursor: pointer;
@@ -173,28 +191,14 @@ body {
             outline: none;
             border: none;
           }
-          .error-message {
-            color: red;
-            font-size: 13px;
-            padding: 10px 0px;
+          label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #2e2e2e;
           }
-
-          .success-message {
-            display: none;
+          .desc {
+            height: 60px;
           }
-        }
-      }
-    }
-    .delete-employee .modal {
-      display: none;
-      z-index: 20000;
-      .close {
-        font-size: 30px;
-        cursor: pointer;
-      }
-      .modal-body {
-        p {
-          font-size: 1rem;
         }
       }
     }
@@ -207,17 +211,6 @@ body {
       height: 100vh;
       z-index: 10000;
       display: none;
-    }
-  }
-  footer {
-    margin: 60px 0px 30px 0px;
-    p {
-      display: flex;
-      align-items: center;
-      font-size: 14px;
-      gap: 5px;
-      position: absolute;
-      bottom: 0;
     }
   }
 }

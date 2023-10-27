@@ -10,6 +10,7 @@
 body {
   height: 100%;
   width: 100%;
+  background-color: #eee;
 }
 
 .navigation {
@@ -94,11 +95,12 @@ body {
     .breadcrumb {
       width: 1000px;
       border-radius: 5px;
-      background-color: #eee;
+      background-color: #ddd;
       padding: 10px 15px;
       li {
         list-style: none;
-        font-size: 0.94rem;
+        font-size: 1rem;
+        font-weight: 600;
         color: #333;
       }
     }
