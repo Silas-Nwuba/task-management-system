@@ -46,15 +46,7 @@ export function writeProjectDb(data) {
 //updateEmployee
 export const updateProjectDb = (id, data) => {
   const db = getDatabase(app);
-  const refDoc = ref(db, 'project/' + id);
-  update(refDoc, {
-    cost: data.cost,
-    desc: data.desc,
-    endDate: data.endDate,
-    piority: data.piority,
-    projectStatus: data.projectStatus,
-    startDate: startDate,
-  })
+  update(ref(db, 'project/' + id), data)
     .then(() => {
       const key = 'successMessage';
       localStorage.setItem(key, 'Successfully Updated');

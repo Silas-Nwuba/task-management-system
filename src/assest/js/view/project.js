@@ -154,7 +154,6 @@ const validation = (formElement) => {
   }
 };
 const loader = () => {
-  document.querySelector('html').style.overflowY = 'hidden';
   form.querySelector('.btn-submit').innerHTML = 'Processing...';
 };
 
@@ -323,6 +322,7 @@ const renderItemOnEditModal = (
     editmodal.querySelector('.close').addEventListener('click', closeEditModal);
     editmodal.querySelector('form').setAttribute('novalidate', '');
     editmodal.querySelector('form').addEventListener('submit', validationForm);
+    editmodal.querySelector('.btn-submit').innerHTML = 'Save';
   });
 };
 
@@ -370,16 +370,16 @@ const checkFormInput = (formElement) => {
 
 const editProjectData = (form) => {
   const id = editmodal.querySelector('.modal').dataset.id;
-  const projectName = form.querySelector('.project-name');
-  const piority = form.querySelector('.piority');
-  const cost = form.querySelector('.cost');
-  const projectStatus = form.querySelector('.status');
-  const startDate = form.querySelector('.start-date');
-  const endDate = form.querySelector('.end-date');
-  const desc = form.querySelector('.desc');
+  const projectName = form.querySelector('.project-name').value;
+  const piority = form.querySelector('.piority').value;
+  const cost = form.querySelector('.cost').value;
+  const projectStatus = form.querySelector('.status').value;
+  const startDate = form.querySelector('.start-date').value;
+  const endDate = form.querySelector('.end-date').value;
+  const desc = form.querySelector('.desc').value;
 
   const projectObject = {
-    cost: cost,
+    cost: cost.replaceAll(',', ''),
     desc: desc,
     endDate: endDate,
     projectName: projectName,

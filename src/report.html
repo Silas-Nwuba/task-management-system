@@ -2,10 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-    <link rel="stylesheet" href="/src/assest/css/dashboard.css" />
-    <script type="module" src="/src/assest/js/view/dashboard.js"></script>
-    <title>task-management/dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/assest/css/report.css" />
+    <link
+      rel="shortcut icon"
+      href="/image/icons8-podio-48.png"
+      type="image/x-icon"
+    />
+    <script type="module" src="/src/assest/js/view/task.js"></script>
+    <title>Task | Task-manangement</title>
   </head>
   <body>
     <section class="navigation">
@@ -80,7 +85,7 @@
               >
             </li>
             <li>
-              <a href="/src/dashboard.html"
+              <a href="/src/task.html"
                 ><svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -146,125 +151,52 @@
           </ul>
         </div>
       </div>
-      <div class="dashboard">
-        <h4>Dashboard</h4>
+      <div class="report">
         <nav class="breadcrumb">
-          <li>Dashboard</li>
+          <li>Project Report</li>
         </nav>
-        <div class="dashboard-content">
-          <div class="item item-1">
-            <div class="item-content">
-              <h5>Employee</h5>
-              <h3>20</h3>
-            </div>
-            <div class="icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="30px"
-                height="30px"
-                viewBox="0 0 640 512"
-              >
-                <path
-                  d="M144 0a80 80 0 1 1 0 160A80 80 0 1 1 144 0zM512 0a80 80 0 1 1 0 160A80 80 0 1 1 512 0zM0 298.7C0 239.8 47.8 192 106.7 192h42.7c15.9 0 31 3.5 44.6 9.7c-1.3 7.2-1.9 14.7-1.9 22.3c0 38.2 16.8 72.5 43.3 96c-.2 0-.4 0-.7 0H21.3C9.6 320 0 310.4 0 298.7zM405.3 320c-.2 0-.4 0-.7 0c26.6-23.5 43.3-57.8 43.3-96c0-7.6-.7-15-1.9-22.3c13.6-6.3 28.7-9.7 44.6-9.7h42.7C592.2 192 640 239.8 640 298.7c0 11.8-9.6 21.3-21.3 21.3H405.3zM224 224a96 96 0 1 1 192 0 96 96 0 1 1 -192 0zM128 485.3C128 411.7 187.7 352 261.3 352H378.7C452.3 352 512 411.7 512 485.3c0 14.7-11.9 26.7-26.7 26.7H154.7c-14.7 0-26.7-11.9-26.7-26.7z"
-                />
-              </svg>
-            </div>
-          </div>
-          <div class="item item-2">
-            <div class="item-content">
-              <h5>Task</h5>
-              <h3>15</h3>
-            </div>
-            <div class="icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="30px"
-                height="30px"
-                fill="currentColor"
-                class="bi bi-list-task"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H2zM3 3H2v1h1V3z"
-                />
-                <path
-                  d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9z"
-                />
-                <path
-                  fill-rule="evenodd"
-                  d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5V7zM2 7h1v1H2V7zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5H2zm1 .5H2v1h1v-1z"
-                />
-              </svg>
-            </div>
-          </div>
-
-          <div class="item item-3">
-            <div class="item-content">
-              <h5>Partial Task</h5>
-              <h3>5</h3>
-            </div>
-            <div class="icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="30px"
-                height="30px"
-                fill="currentColor"
-                class="bi bi-list-task"
-                viewBox="0 0 16 16"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H2zM3 3H2v1h1V3z"
-                />
-                <path
-                  d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9z"
-                />
-                <path
-                  fill-rule="evenodd"
-                  d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5V7zM2 7h1v1H2V7zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5H2zm1 .5H2v1h1v-1z"
-                />
-              </svg>
-            </div>
-          </div>
-
-          <div class="item item-4">
-            <div class="item-content">
-              <h5>Complete Task</h5>
-              <h3>10</h3>
-            </div>
-            <div class="icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="30px"
-                height="30px"
-                viewBox="0 0 512 512"
-              >
-                <path
-                  d="M152.1 38.2c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 113C-2.3 103.6-2.3 88.4 7 79s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zm0 160c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 273c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zM224 96c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zm0 160c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zM160 416c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H192c-17.7 0-32-14.3-32-32zM48 368a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"
-                />
-              </svg>
-            </div>
-          </div>
-        </div>
-        <footer>
-          <p>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              fill="currentColor"
-              class="bi bi-c-circle"
-              viewBox="0 0 16 16"
-            >
-              <path
-                d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8Zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0ZM8.146 4.992c-1.212 0-1.927.92-1.927 2.502v1.06c0 1.571.703 2.462 1.927 2.462.979 0 1.641-.586 1.729-1.418h1.295v.093c-.1 1.448-1.354 2.467-3.03 2.467-2.091 0-3.269-1.336-3.269-3.603V7.482c0-2.261 1.201-3.638 3.27-3.638 1.681 0 2.935 1.054 3.029 2.572v.088H9.875c-.088-.879-.768-1.512-1.729-1.512Z"
-              />
-            </svg>
-            elimcephas-2023
-          </p>
-        </footer>
+        <table class="table table-striped" id="mytable">
+          <thead>
+            <tr>
+              <th>S/N</th>
+              <th>Project</th>
+              <th>Task</th>
+              <th>Completed Task</th>
+              <th>work Duration</th>
+              <th>Progress</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>0001</td>
+              <td>
+                <span>
+                  <h3 class="project-name">Software</h3>
+                  <p class="due-date">Due:2023-10-20</p>
+                </span>
+              </td>
+              <td>2</td>
+              <td>21</td>
+              <td>0Hr/s</td>
+              <td>
+                <div class="progress">
+                  <div
+                    class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                    role="progressbar"
+                    aria-valuenow="100%"
+                    aria-valumin="0"
+                    aria-valuemax="300"
+                  ></div>
+                </div>
+                <small>0% Complete</small>
+              </td>
+              <td><span class="badge badge-info">Pending</span></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </section>
   </body>
 </html>
+s
