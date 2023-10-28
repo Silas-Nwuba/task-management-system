@@ -143,26 +143,9 @@ body {
         font-size: 0.95rem;
         padding: 20px 10px;
       }
-      tbody td svg {
-        position: relative;
-        bottom: 2px;
-        right: 2px;
-      }
-      .project-title {
-        font-weight: 600;
-        font-size: 1rem;
-      }
-      .project-desc {
-        font-size: 0.9rem;
-      }
-
-      .bi-info-square-fill {
-        color: white;
-      }
     }
-    .add-project .modal,
-    .edit-project .modal {
-      display: none;
+    .add-task .modal {
+      display: block;
       z-index: 20000;
       transition: opacity 0.15s linear;
       .close {
@@ -202,20 +185,6 @@ body {
         }
       }
     }
-
-    .delete-project .modal {
-      display: none;
-      z-index: 20000;
-      .close {
-        font-size: 30px;
-        cursor: pointer;
-      }
-      .modal-body {
-        p {
-          font-size: 1rem;
-        }
-      }
-    }
     .overlay {
       width: 100%;
       background-color: rgba(0, 0, 0, 0.7);
@@ -224,7 +193,7 @@ body {
       left: 0;
       height: 100vh;
       z-index: 10000;
-      display: none;
+      display: block;
     }
   }
 }

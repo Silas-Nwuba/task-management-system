@@ -119,7 +119,6 @@ const creatEmployee = (formElement) => {
     gender: gender,
     position: position,
   };
-
   writeEmployee(data);
 };
 

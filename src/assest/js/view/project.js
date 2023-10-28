@@ -1,5 +1,9 @@
 import toastr from 'toastr';
-import { writeProjectDb } from '../modal/projectService';
+import {
+  writeProjectDb,
+  updateProjectDb,
+  deleteProjectDb,
+} from '../modal/projectService';
 import { getDatabase, ref, onValue } from 'firebase/database';
 import { app } from '../modal/config/firebaseConfig';
 
@@ -8,15 +12,45 @@ const addBtn = document.querySelector('.add-btn');
 const overlay = document.querySelector('.overlay');
 const form = document.querySelector('form');
 const tbody = document.querySelector('tbody');
+const editmodal = document.querySelector('.edit-project');
+const projectTeamMember = document.querySelector('.project-team-member');
+const deleteModal = document.querySelector('.delete-project');
 
-//show project modal
+//show add project modal
 addBtn.addEventListener('click', () => {
+  const db = getDatabase(app);
+  const getItem = ref(db, 'employee');
+  onValue(getItem, (snapshot) => {
+    snapshot.forEach((item) => {
+      const data = item.val();
+      const { firstName, lastName } = data;
+      const fullname =
+        firstName.charAt(0).toUpperCase() +
+        firstName.slice(1) +
+        ' ' +
+        lastName.charAt(0).toUpperCase() +
+        lastName.slice(1);
+      projectTeamMember.options[projectTeamMember.options.length] = new Option(
+        fullname,
+        fullname
+      );
+      const options = Array.from(projectTeamMember.options);
+      const optionValues = new Set();
+
+      options.forEach((option) => {
+        if (option.value && optionValues.has(option.value)) {
+          projectTeamMember.removeChild(option);
+        } else if (option.value) {
+          optionValues.add(option.value);
+        }
+      });
+    });
+  });
   projectModal.querySelector('.modal').style.display = 'block';
   projectModal.querySelector('.btn-submit').innerHTML = 'submit';
   overlay.style.display = 'block';
 });
-//close project modal
-
+//close add project modal
 projectModal.querySelector('.close').addEventListener('click', () => {
   projectModal.querySelector('.modal').style.display = 'none';
   overlay.style.display = 'none';
@@ -40,6 +74,7 @@ const renderEmployee = () => {
         endDate,
         desc,
       } = data;
+
       const row = document.createElement('tr');
       const projectCost = new Intl.NumberFormat().format(cost);
       const typecheck =
@@ -119,6 +154,7 @@ const validation = (formElement) => {
   }
 };
 const loader = () => {
+  document.querySelector('html').style.overflowY = 'hidden';
   form.querySelector('.btn-submit').innerHTML = 'Processing...';
 };
 
@@ -153,22 +189,22 @@ toastr.options = {
 tbody.addEventListener('click', (e) => {
   e.preventDefault();
   if (e.target.closest('.btn-success')) {
-    alert('working');
     const row =
       e.target.closest('.btn-success').parentElement.parentElement
         .parentElement;
     const id = row.children[0].innerText;
-    const projectName = row.children[1];
-    const desc = projectName.parentElement;
-    console.log(desc);
+    const name = row.children[1].querySelector('.project-title').innerText;
+    const desc = row.children[1].querySelector('.project-desc').innerText;
     const cost = row.children[2].innerText;
     const startDate = row.children[3].innerText;
     const endDate = row.children[4].innerText;
     const piority = row.children[5].innerText;
     const projectStatus = row.children[6].innerText;
+
     renderItemOnEditModal(
       id,
-      projectName,
+      name,
+      desc,
       cost,
       startDate,
       endDate,
@@ -177,21 +213,20 @@ tbody.addEventListener('click', (e) => {
     );
   }
 });
-
 const renderItemOnEditModal = (
   id,
-  projectName,
+  name,
+  desc,
   cost,
   startDate,
   endDate,
-  desc,
   piority,
   projectStatus
 ) => {
   let temp = [];
   const details = {
     id: id,
-    projectName: projectName,
+    name: name,
     desc: desc,
     cost: cost,
     startDate: startDate,
@@ -199,6 +234,7 @@ const renderItemOnEditModal = (
     piority: piority,
     projectStatus: projectStatus,
   };
+  console.log(details);
   if (temp.length > 0) {
     temp = [];
   }
@@ -211,7 +247,6 @@ const renderItemOnEditModal = (
           <h5 class="modal-title" id="staticBackdropLabel">
             Edit Project
           </h5>
-
           <span class="close">&times;</span>
         </div>
         <div class="modal-body">
@@ -224,29 +259,29 @@ const renderItemOnEditModal = (
                   required
                   class="project-name"
                   required
-                  value="silas"
+                  value="${data.name}"
                 />
               </div>
               <div class="col">
                 <label for="name">Piority</label>
                 <select class="piority" required>
-                <option value="${data.piority}">Low</option>
-                  <option value="" selected></option>
+                <option value="${data.piority}" selected>${data.piority}</option>
+                  <option value="">select</option>
                   <option value="Low">Low</option>
                   <option value="High">High</option>
                 </select>
               </div>
-              <div class="col">
-                <label for="status">Cost</label>
-                <input type="text" required class="cost" value="${data.cost}" />
-              </div>
             </div>
-
             <div class="row">
+            <div class="col">
+                <label for="status">Cost</label>
+                <input type="text" required class="cost"value="${data.cost}" />
+              </div>
               <div class="col">
                 <label for="status">Status</label>
                 <select class="status" required>
-                  <option value="" selected>select</option>
+                <option value="${data.projectStatus}" selected>${data.projectStatus}</option>
+                  <option value="">select</option>
                   <option value="Pending">Pending</option>
                   <option value="On-Hold">On-Hold</option>
                   <option value="Done">Done</option>
@@ -262,42 +297,21 @@ const renderItemOnEditModal = (
                   value="${data.startDate}"
                 />
               </div>
-              <div class="col">
-                <label for="EndDate">End Date</label>
-                <input type="date" required class="end-date" required  value="${data.endDate}"/>
-              </div>
-            </div>
-
+            </div> 
             <div class="row">
-              <div class="col">
-                <label for="Project-Manager">Project Manager</label>
-                <select class="project-manager" required>
-                <option value="Claire Blake">${data.projectManager}</option>
-                  <option value="" selected>select</option>
-                  <option value="Claire Blake">Claire Blake</option>
-                  <option value="George Wilson">George Wilson</option>
-                  <option value="John Smith">John Smith</option>
-                  <option value="Mike Williams">Mike Williams</option>
-                </select>
-              </div>
-              <div class="col">
-                <label for="Project-Team-member"
-                  >Project Team Member</label
-                >
-                <select class="project-team-member" required>
-                  <option value="" selected>select</option>
-                  <option value="silas">silas</option>
-                  <option value="ebuka">ebuka</option>
-                </select>
+            
+            <div class="col">
+                <label for="EndDate">End Date</label>
+                <input type="date" required class="end-date" required value="${data.endDate}"/>
               </div>
             </div>
             <div class="row">
               <div class="col">
                 <label for="desc">Description</label>
-                <input type="text" required class="desc" value="good job" />
+                <input type="text" required class="desc" value="${data.desc}" />
               </div>
             </div>
-            <button type="submit" class="btn-submit">Submit</button>
+            <button type="submit" class="btn-submit">Save</button>
           </form>
         </div>
       </div>
@@ -310,4 +324,128 @@ const renderItemOnEditModal = (
     editmodal.querySelector('form').setAttribute('novalidate', '');
     editmodal.querySelector('form').addEventListener('submit', validationForm);
   });
+};
+
+const closeEditModal = () => {
+  editmodal.querySelector('.modal').remove();
+  overlay.style.display = 'none';
+  temp = [];
+};
+const validationForm = (e) => {
+  e.preventDefault();
+  const form = e.target;
+  if (checkFormInput(form)) {
+    form.querySelector('.btn-submit').innerHTML = 'Processing..';
+    editProjectData(form);
+  }
+};
+
+const checkFormInput = (formElement) => {
+  const projectName = formElement.querySelector('.project-name');
+  const piority = formElement.querySelector('.piority');
+  const cost = formElement.querySelector('.cost');
+  const projectStatus = formElement.querySelector('.status');
+  const startDate = formElement.querySelector('.start-date');
+  const endDate = formElement.querySelector('.end-date');
+  const desc = formElement.querySelector('.desc');
+  let error = true;
+  if (
+    projectName.value.trim() === '' ||
+    piority.value.trim() === '' ||
+    cost.value.trim() === '' ||
+    projectStatus.value.trim() === '' ||
+    startDate.value.trim() === '' ||
+    endDate.value.trim() === '' ||
+    desc.value.trim() === ''
+  ) {
+    toastr.error('input field is required');
+    error = false;
+  }
+  if (error === true) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+const editProjectData = (form) => {
+  const id = editmodal.querySelector('.modal').dataset.id;
+  const projectName = form.querySelector('.project-name');
+  const piority = form.querySelector('.piority');
+  const cost = form.querySelector('.cost');
+  const projectStatus = form.querySelector('.status');
+  const startDate = form.querySelector('.start-date');
+  const endDate = form.querySelector('.end-date');
+  const desc = form.querySelector('.desc');
+
+  const projectObject = {
+    cost: cost,
+    desc: desc,
+    endDate: endDate,
+    projectName: projectName,
+    piority: piority,
+    projectStatus: projectStatus,
+    startDate: startDate,
+  };
+
+  updateProjectDb(id, projectObject);
+};
+
+//delete employee
+const shoeDeleteProjectModal = () => {
+  tbody.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (e.target.closest('.btn-danger')) {
+      const row =
+        e.target.closest('.btn-danger').parentElement.parentElement
+          .parentElement;
+      const id = row.children[0].innerText;
+
+      const html = `<div class="modal" data-id=${id}>
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">
+              Confirmation
+            </h5>
+
+            <span class="close">&times;</span>
+          </div>
+          <div class="modal-body">
+            <p>Are you sure to delete this project?</p>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-success">Yes</button>
+            <button class="btn btn-danger">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>`;
+      deleteModal.insertAdjacentHTML('beforeend', html);
+      deleteModal.querySelector('.modal').style.display = 'block';
+      overlay.style.display = 'block';
+      deleteModal.querySelector('.close').addEventListener('click', () => {
+        deleteModal.querySelector('.modal').style.display = 'none';
+        overlay.style.display = 'none';
+      });
+      deleteModal.querySelector('.btn-danger').addEventListener('click', () => {
+        deleteModal.querySelector('.modal').style.display = 'none';
+        overlay.style.display = 'none';
+      });
+      deleteModal
+        .querySelector('.btn-success')
+        .addEventListener('click', deleteEmployee);
+    }
+  });
+};
+shoeDeleteProjectModal();
+const deleteEmployee = (e) => {
+  const id =
+    e.target.parentElement.parentElement.parentElement.parentElement.dataset.id;
+  deleteProjectDb(id);
+};
+
+toastr.options = {
+  preventDuplicates: true,
+  preventOpenDuplicate: true,
 };
