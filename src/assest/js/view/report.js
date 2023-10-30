@@ -1,6 +1,7 @@
 import { getDatabase, ref, onValue } from 'firebase/database';
 import { app } from '../modal/config/firebaseConfig';
 
+const tbody = document.querySelector('tbody');
 const renderCompleteTask = () => {
   const db = getDatabase(app);
   const getItem = ref(db, 'completeTask');

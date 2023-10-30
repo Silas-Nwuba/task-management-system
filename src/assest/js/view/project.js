@@ -86,16 +86,9 @@ const renderEmployee = () => {
 
       const row = document.createElement('tr');
       const projectCost = new Intl.NumberFormat().format(cost);
-      const completeButton = document.querySelectorAll('.btn-warning');
-      console.log(completeButton);
       const checkStatus =
         projectStatus == 'Done' ? 'badge-success' : 'badge-info';
       const checkPiority = piority == 'High' ? 'badge-high' : 'badge-low';
-      // const isConpleteTaskButton = true;
-      // const checkCompleteTask =
-      //   projectStatus != 'Done'
-      //     ? (completeButton.disabled = isConpleteTaskButton)
-      //     : (completeButton.disabled = isConpleteTaskButton);
 
       row.innerHTML = `<td>${id}</td>
          <td> 
@@ -115,7 +108,7 @@ const renderEmployee = () => {
          <td>${startDate}</td>
          <td>${endDate}</td>
          <td><span class="badge ${checkPiority}">${piority}</span></td>
-         <td><span class="badge ${checkStatus}">${projectStatus}</span></td>
+         <td><span class="status badge ${checkStatus}">${projectStatus}</span></td>
          <td>
          <span>
          <button type="button" class="btn btn-info">
@@ -136,11 +129,7 @@ const renderEmployee = () => {
                       </svg>
                     </button>
                     <button type="button" class="btn btn-warning">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-task" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H2zM3 3H2v1h1V3z"/>
-                    <path d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9z"/>
-                    <path fill-rule="evenodd" d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5V7zM2 7h1v1H2V7zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5H2zm1 .5H2v1h1v-1z"/>
-                  </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M152.1 38.2c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 113C-2.3 103.6-2.3 88.4 7 79s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zm0 160c9.9 8.9 10.7 24 1.8 33.9l-72 80c-4.4 4.9-10.6 7.8-17.2 7.9s-12.9-2.4-17.6-7L7 273c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l22.1 22.1 55.1-61.2c8.9-9.9 24-10.7 33.9-1.8zM224 96c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zm0 160c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zM160 416c0-17.7 14.3-32 32-32H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H192c-17.7 0-32-14.3-32-32zM48 368a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></svg>
                     </button>
                     <button type="button" class="btn btn-danger">
                       <svg
@@ -161,7 +150,15 @@ const renderEmployee = () => {
        </span>
          </td>
        </tr>`;
+
       tbody.appendChild(row);
+      const textStatus = document.querySelector('.status').innerText;
+      const text = document.querySelectorAll('.btn-warning');
+      text.forEach(btn => { 
+       textStatus === 'Done'? (btn.disabled = false): (btn.disabled = true);
+      
+    })
+      //prettier-ignore
     });
   });
 };
@@ -601,10 +598,7 @@ const renderOnCompleteTaskModal = (
       .querySelector('.btn-danger')
       .addEventListener('click', closecompleteModal);
     completeModal.querySelector('form').setAttribute('novalidate', '');
-    completeModal
-      .querySelector('form')
-      .addEventListener('submit', submitCompletForm);
-    completeModal.querySelector('.btn-success').innerHTML = 'Complete Task';
+    completeModal.querySelector('form').addEventListener('submit', CompletForm);
   });
 };
 
@@ -614,7 +608,12 @@ const closecompleteModal = () => {
   temp = [];
 };
 
-const submitCompletForm = (form) => {
+const CompletForm = (e) => {
+  e.preventDefault();
+  const form = e.target;
+  submitCompleteForm(form);
+};
+const submitCompleteForm = (form) => {
   const id = completeModal.querySelector('.modal').dataset.id;
   const projectName = form.querySelector('.project-name').value;
   const assignTo = form.querySelector('.assign-to').value;
@@ -636,7 +635,6 @@ const submitCompletForm = (form) => {
     projectStatus: projectStatus,
     startDate: startDate,
   };
-
   completeProjectDb(id, completeprojectObject);
 };
 
