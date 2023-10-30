@@ -75,6 +75,39 @@ export const updateProjectDb = (id, data) => {
     });
 };
 
+export const completeProjectDb = (id, data) => {
+  const db = getDatabase(app);
+  set(ref(db, 'completeTask/' + id), data)
+    .then(() => {
+      const key = 'successMessage';
+      localStorage.setItem(key, 'Successfully Completed');
+      const completeModal = document.querySelector('.complete-task');
+      completeModal.querySelector('.modal').style.display = 'none';
+      document.querySelector('.overlay').style.display = 'none';
+      document.querySelector('form').reset();
+
+      const message = localStorage.getItem('successMessage');
+      if (message) {
+        toastr.success(message);
+        localStorage.removeItem('successMessage');
+      }
+    })
+    .catch(() => {
+      const key = 'errorMessage';
+      localStorage.setItem(key, 'Network Error');
+      const completeModal = document.querySelector('.complete-task');
+      completeModal.querySelector('.modal').style.display = 'none';
+      document.querySelector('.overlay').style.display = 'none';
+      document.querySelector('form').reset();
+
+      const message = localStorage.getItem('errorMessage');
+      if (message) {
+        toastr.error(message);
+        localStorage.removeItem('errorMessage');
+      }
+    });
+};
+
 export function deleteProjectDb(id) {
   const db = getDatabase(app);
   remove(ref(db, 'project/' + id))

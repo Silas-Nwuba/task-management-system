@@ -85,31 +85,7 @@
                 Project</a
               >
             </li>
-            <li>
-              <a href="/src/task.html"
-                ><svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  class="bi bi-list-task"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H2zM3 3H2v1h1V3z"
-                  />
-                  <path
-                    d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9z"
-                  />
-                  <path
-                    fill-rule="evenodd"
-                    d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5V7zM2 7h1v1H2V7zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5H2zm1 .5H2v1h1v-1z"
-                  />
-                </svg>
-                Task</a
-              >
-            </li>
+
             <li>
               <a href="/src/report.html"
                 ><svg
@@ -154,27 +130,31 @@
       </div>
       <div class="project">
         <nav class="breadcrumb">
-          <li>Project</li>
+          <li>Project Task</li>
         </nav>
         <span class="add-btn">
           <button type="button">New Project</button>
         </span>
-        <table class="table table-striped" id="mytable">
-          <thead>
-            <tr>
-              <th>S/N</th>
-              <th>Project</th>
-              <th>Estimation</th>
-              <th>Date Started</th>
-              <th>Due Date</th>
-              <th>Piority</th>
-              <th>Status</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-
+        <div class="container-fluid">
+          <div class="col-md-12">
+            <table class="table table-striped" id="mytable">
+              <thead>
+                <tr>
+                  <th>S/N</th>
+                  <th>Task</th>
+                  <th>Assign To</th>
+                  <th>Estimation</th>
+                  <th>Date Started</th>
+                  <th>Due Date</th>
+                  <th>Piority</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
         <!--add project modal-->
         <div class="add-project">
           <div class="modal">
@@ -191,7 +171,7 @@
                   <form action="" autocomplete="off">
                     <div class="row">
                       <div class="col">
-                        <label for="name">Project Name</label>
+                        <label for="name">Task Name</label>
                         <input
                           type="text"
                           required
@@ -250,9 +230,7 @@
                         </select>
                       </div>
                       <div class="col">
-                        <label for="Project-Team-member"
-                          >Project Team Member</label
-                        >
+                        <label for="Project-Team-member">Assign To</label>
                         <select class="project-team-member" required>
                           <option value="" selected>select</option>
                         </select>
@@ -264,21 +242,26 @@
                         <input type="text" required class="desc" />
                       </div>
                     </div>
-                    <button type="submit" class="btn-submit">Submit</button>
+
+                    <button type="submit" class="btn btn-success">
+                      Submit
+                    </button>
+                    <button type="button" class="btn btn-danger">Cancel</button>
                   </form>
                 </div>
               </div>
             </div>
           </div>
         </div>
-
         <!--edit project modal-->
         <div class="edit-project"></div>
+        <!--complete task-->
+        <div class="complete-task"></div>
 
         <!--delete project modal-->
         <div class="delete-project"></div>
-        <div class="overlay"></div>
       </div>
+      <div class="overlay"></div>
     </section>
   </body>
 </html>

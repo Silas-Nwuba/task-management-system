@@ -3,7 +3,7 @@
 @import '/node_modules/toastr/toastr.scss';
 
 #toast-container {
-  position: absolute;
+  position: fixed;
   top: 10px;
   right: 10px;
 }
@@ -86,7 +86,7 @@ body {
   }
   .project {
     margin-top: 100px;
-    margin-left: 300px;
+    margin-left: 290px;
     .breadcrumb {
       width: 1000px;
       border-radius: 5px;
@@ -102,62 +102,79 @@ body {
     .add-btn {
       button {
         width: 120px;
-        background-color: #136a8a;
-        color: white;
         font-size: 1rem;
         padding: 10px;
         border: none;
         outline: none;
         border-radius: 5px;
         margin-top: 10px;
+        background-color: #136a8a;
+        color: white;
       }
     }
-    table {
-      margin-top: 30px;
-      margin-bottom: 30px;
+    .container-fluid {
       width: 100%;
       background-color: white;
-      box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
-        rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
-      .badge {
-        display: inline-block;
-        padding: 0.25em 0.4em;
-        font-size: 75%;
-        font-weight: 700;
-        line-height: 1;
-        text-align: center;
-        white-space: nowrap;
-        vertical-align: baseline;
-        border-radius: 0.25rem;
-      }
-      .badge-info {
-        color: white;
-        background-color: #007bff;
-      }
-      .badge-success {
-        background-color: green;
-        color: white;
-      }
-      tbody td {
-        color: #333;
-        font-size: 0.95rem;
-        padding: 20px 10px;
-      }
-      tbody td svg {
-        position: relative;
-        bottom: 2px;
-        right: 2px;
-      }
-      .project-title {
-        font-weight: 600;
-        font-size: 1rem;
-      }
-      .project-desc {
-        font-size: 0.9rem;
-      }
+      margin-top: 30px;
+      padding: 20px 20px 5px 20px;
+      table {
+        margin-top: 0px;
+        margin-bottom: 30px;
 
-      .bi-info-square-fill {
-        color: white;
+        background-color: white;
+        // box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
+        //   rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+        .badge {
+          display: inline-block;
+          padding: 0.25em 0.4em;
+          font-size: 75%;
+          font-weight: 700;
+          line-height: 1;
+          text-align: center;
+          white-space: nowrap;
+          vertical-align: baseline;
+          border-radius: 0.25rem;
+        }
+        .badge-info {
+          color: white;
+          background-color: #007bff;
+        }
+        .badge-success {
+          background-color: green;
+          color: white;
+        }
+        .badge-low {
+          background-color: #007bff;
+          color: white;
+        }
+        .badge-high {
+          background-color: #136a8a;
+          color: white;
+        }
+        .btn-info {
+          color: white;
+        }
+        tbody td {
+          color: #333;
+          font-size: 0.95rem;
+          padding: 20px 10px;
+        }
+        tbody td svg {
+          position: relative;
+          bottom: 2px;
+          right: 2px;
+        }
+        .project-title {
+          font-weight: 600;
+          font-size: 0.9rem;
+        }
+        .project-desc {
+          font-size: 0.8rem;
+        }
+
+        .bi-info-square-fill {
+          color: white;
+        }
       }
     }
     .add-project .modal,
@@ -181,15 +198,17 @@ body {
             margin: 10px 0px;
             padding: 10px 15px;
           }
-          button {
+          .btn-success {
             background-color: #136a8a;
             color: white;
-            border-radius: 5px;
-            width: 125px;
-            margin: 10px 0px;
-            padding: 10px 20px;
-            outline: none;
-            border: none;
+          }
+          .btn-info {
+            color: white;
+            background-color: #136a8a;
+            border-color: #136a8a;
+          }
+          button {
+            margin: 15px 0px;
           }
           label {
             font-size: 14px;
@@ -203,6 +222,47 @@ body {
       }
     }
 
+    .complete-task .modal {
+      display: none;
+      z-index: 20000;
+      .close {
+        font-size: 30px;
+        cursor: pointer;
+      }
+      .modal-body {
+        form {
+          input,
+          select {
+            width: 100%;
+            height: 40px;
+            border: 1px solid #eee;
+            outline: none;
+            border-radius: 5px;
+            margin: 10px 0px;
+            padding: 10px 15px;
+          }
+          :disabled {
+            background-color: #b4e4f62e;
+          }
+          .btn-submit {
+            background-color: #136a8a;
+            color: white;
+            border-color: #136a8a;
+          }
+          button {
+            margin: 15px 0px;
+          }
+          label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #2e2e2e;
+          }
+          .desc {
+            height: 60px;
+          }
+        }
+      }
+    }
     .delete-project .modal {
       display: none;
       z-index: 20000;
@@ -216,15 +276,15 @@ body {
         }
       }
     }
-    .overlay {
-      width: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100vh;
-      z-index: 10000;
-      display: none;
-    }
+  }
+  .overlay {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 10000;
+    display: none;
   }
 }

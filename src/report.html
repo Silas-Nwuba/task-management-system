@@ -9,7 +9,7 @@
       href="/image/icons8-podio-48.png"
       type="image/x-icon"
     />
-    <script type="module" src="/src/assest/js/view/task.js"></script>
+    <script type="module" src="/src/assest/js/view/report.js"></script>
     <title>Task | Task-manangement</title>
   </head>
   <body>
@@ -84,31 +84,7 @@
                 Project</a
               >
             </li>
-            <li>
-              <a href="/src/task.html"
-                ><svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="currentColor"
-                  class="bi bi-list-task"
-                  viewBox="0 0 16 16"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H2zM3 3H2v1h1V3z"
-                  />
-                  <path
-                    d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9z"
-                  />
-                  <path
-                    fill-rule="evenodd"
-                    d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5V7zM2 7h1v1H2V7zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5H2zm1 .5H2v1h1v-1z"
-                  />
-                </svg>
-                Task</a
-              >
-            </li>
+
             <li>
               <a href="/src/report.html"
                 ><svg
@@ -153,48 +129,106 @@
       </div>
       <div class="report">
         <nav class="breadcrumb">
-          <li>Project Report</li>
+          <li>Completed Task</li>
         </nav>
-        <table class="table table-striped" id="mytable">
-          <thead>
-            <tr>
-              <th>S/N</th>
-              <th>Project</th>
-              <th>Task</th>
-              <th>Completed Task</th>
-              <th>work Duration</th>
-              <th>Progress</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>0001</td>
-              <td>
-                <span>
-                  <h3 class="project-name">Software</h3>
-                  <p class="due-date">Due:2023-10-20</p>
-                </span>
-              </td>
-              <td>2</td>
-              <td>21</td>
-              <td>0Hr/s</td>
-              <td>
-                <div class="progress">
-                  <div
-                    class="progress-bar progress-bar-striped progress-bar-animated bg-success"
-                    role="progressbar"
-                    aria-valuenow="100%"
-                    aria-valumin="0"
-                    aria-valuemax="300"
-                  ></div>
-                </div>
-                <small>0% Complete</small>
-              </td>
-              <td><span class="badge badge-info">Pending</span></td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-container">
+          <table class="table table-striped" id="mytable">
+            <thead>
+              <tr>
+                <th>Task</th>
+                <th>Assign To</th>
+                <th>Started Date</th>
+                <th>Due Date</th>
+                <th>Completed</th>
+                <th>Progress</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- <tr>
+                <td>
+                  <span>
+                    <h3 class="project-name">Ecomerce</h3>
+                   <p class="due-date">Due:2023-10-20</p> -->
+              <!-- </span>
+                </td>
+                <td>Silas nwuba</td>
+                <td>20-20-2000</td>
+                <td>30-20-2000</td>
+                <td>
+                  <span class="badge badge-complete">Completed on-time</span>
+                </td>
+                <td>
+                  <div class="progress">
+                    <div
+                      class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                      role="progressbar"
+                      aria-valuenow="100%"
+                      aria-valumin="0"
+                      aria-valuemax="300"
+                    ></div>
+                  </div>
+                  <small>100% Complete</small>
+                </td>
+                <td><span class="badge badge-success">Done</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <span>
+                    <h3 class="project-name">Ecomerce</h3>
+                    <!-- <p class="due-date">Due:2023-10-20</p> -->
+              <!-- </span>
+                </td>
+                <td>Silas nwuba</td>
+                <td>20-20-2000</td>
+                <td>30-20-2000</td>
+                <td>
+                  <span class="badge badge-complete">Completed on-time</span>
+                </td>
+                <td>
+                  <div class="progress">
+                    <div
+                      class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                      role="progressbar"
+                      aria-valuenow="100%"
+                      aria-valumin="0"
+                      aria-valuemax="300"
+                    ></div>
+                  </div>
+                  <small>100% Complete</small>
+                </td>
+                <td><span class="badge badge-success">Done</span></td>
+              </tr>
+              <tr>
+                <td>
+                  <span>
+                    <h3 class="project-name">Ecomerce</h3> -->
+              <!-- <p class="due-date">Due:2023-10-20</p> -->
+              <!-- </span>
+                </td> -->
+              <!-- <td>Silas nwuba</td>
+                <td>20-20-2000</td>
+                <td>30-20-2000</td>
+                <td>
+                  <span class="badge badge-complete">Completed on-time</span>
+                </td>
+                <td>
+                  <div class="progress">
+                    <div
+                      class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                      role="progressbar"
+                      aria-valuenow="100%"
+                      aria-valumin="0"
+                      aria-valuemax="300"
+                    ></div>
+                  </div>
+                  <small>100% Complete</small>
+                </td>
+                <td><span class="badge badge-success">Done</span></td>
+              </tr>  -->
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
   </body>

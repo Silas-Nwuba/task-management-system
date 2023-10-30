@@ -8,7 +8,8 @@
   right: 10px;
 }
 .progress-bar {
-  width: 40%;
+  width: 100%;
+  border-radius: 0px;
 }
 body {
   background-color: #eee;
@@ -115,42 +116,50 @@ body {
         margin-top: 10px;
       }
     }
-    table {
-      margin-top: 30px;
-      margin-bottom: 30px;
+    .table-container {
       width: 100%;
       background-color: white;
-      box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
-        rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
-      .badge {
-        display: inline-block;
-        padding: 0.25em 0.4em;
-        font-size: 75%;
-        font-weight: 700;
-        line-height: 1;
-        text-align: center;
-        white-space: nowrap;
-        vertical-align: baseline;
-        border-radius: 0.25rem;
-      }
-      .badge-info {
-        color: white;
-        background-color: #007bff;
-      }
-      .badge-success {
-        background-color: green;
-        color: white;
-      }
-      tbody td {
-        color: #333;
-        font-size: 0.95rem;
-        padding: 20px 10px;
-      }
-      .project-name {
-        font-size: 1rem;
-      }
-      .due-date {
-        font-size: 0.8rem;
+      margin-top: 20px;
+      padding: 20px 20px 5px 20px;
+
+      table {
+        margin-top: 0px;
+        margin-bottom: 30px;
+        width: 100%;
+        background-color: white;
+        // box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
+        //   rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+        .badge {
+          display: inline-block;
+          padding: 0.25em 0.4em;
+          font-size: 75%;
+          font-weight: 700;
+          line-height: 1;
+          text-align: center;
+          white-space: nowrap;
+          vertical-align: baseline;
+          border-radius: 0.25rem;
+        }
+
+        .badge-success {
+          background-color: green;
+          color: white;
+        }
+        .badge-complete {
+          background-color: green;
+          color: white;
+        }
+        tbody td {
+          color: #333;
+          font-size: 0.95rem;
+          padding: 20px 10px;
+        }
+        .project-name {
+          font-size: 1rem;
+        }
+        .due-date {
+          font-size: 0.8rem;
+        }
       }
     }
   }

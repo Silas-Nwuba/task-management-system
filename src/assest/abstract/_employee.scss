@@ -3,7 +3,7 @@
 @import '/node_modules/toastr/toastr.scss';
 
 #toast-container {
-  position: absolute;
+  position: fixed;
   top: 10px;
   right: 10px;
 }
@@ -112,35 +112,42 @@ body {
         margin-top: 10px;
       }
     }
-    table {
-      margin-top: 30px;
-      margin-bottom: 30px;
+    .table-container {
       width: 100%;
       background-color: white;
-      box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
-        rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
-      .badge {
-        display: inline-block;
-        padding: 0.25em 0.4em;
-        font-size: 75%;
-        font-weight: 700;
-        line-height: 1;
-        text-align: center;
-        white-space: nowrap;
-        vertical-align: baseline;
-        border-radius: 0.25rem;
-      }
-      .badge-success {
-        color: white;
-        background-color: green;
-      }
-      tbody td {
-        color: #333;
-        font-size: 0.95rem;
-        padding: 20px 10px;
-      }
-      .bi-info-square-fill {
-        color: white;
+      margin-top: 20px;
+      padding: 20px 20px 5px 20px;
+
+      table {
+        margin-top: 20px;
+        margin-bottom: 30px;
+        width: 100%;
+        background-color: white;
+        // box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em,
+        //   rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
+        .badge {
+          display: inline-block;
+          padding: 0.25em 0.4em;
+          font-size: 75%;
+          font-weight: 700;
+          line-height: 1;
+          text-align: center;
+          white-space: nowrap;
+          vertical-align: baseline;
+          border-radius: 0.25rem;
+        }
+        .badge-success {
+          color: white;
+          background-color: green;
+        }
+        tbody td {
+          color: #333;
+          font-size: 0.95rem;
+          padding: 20px 10px;
+        }
+        .bi-info-square-fill {
+          color: white;
+        }
       }
     }
     .add-employee .modal,
