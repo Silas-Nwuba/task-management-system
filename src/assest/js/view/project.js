@@ -209,7 +209,7 @@ const validation = (formElement) => {
   }
 };
 const loader = () => {
-  form.querySelector('.btn-submit').innerHTML = 'Processing...';
+  form.querySelector('.btn-success').innerHTML = 'Processing...';
 };
 const sendProjectData = (form) => {
   const projectName = form.querySelector('.project-name').value;
